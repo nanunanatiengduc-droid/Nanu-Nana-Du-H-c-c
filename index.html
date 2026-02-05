@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khóa Học Tiếng Đức A2 - NaNu NaNa</title>
+    <meta name="description" content="Khóa học tiếng Đức A2 trọn gói. Phát triển kỹ năng độc lập. Lịch học linh hoạt Online & Offline.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. CÀI ĐẶT CHUNG --- */
+        :root {
+            --primary-color: #333333;
+            --accent-color: #e86f4a; /* Màu cam chủ đạo */
+            --accent-hover: #d35400;
+            --dark-bg: #1b2631; /* Màu xanh đen */
+            --light-bg: #f4f6f8;
+            --white: #ffffff;
+            --nav-bg: rgba(21, 183, 204, 0.95); /* Màu nền menu có độ trong suốt */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--primary-color);
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            padding-bottom: 80px;
+        }
+
+        a { text-decoration: none; }
+        ul { list-style: none; }
+
+        /* Nút bấm thường */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(232, 111, 74, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(232, 111, 74, 0.4);
+        }
+
+        /* --- MENU ĐIỀU HƯỚNG (MỚI) --- */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Nút đổi ngôn ngữ */
+        .lang-switch {
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.1);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        .lang-switch option {
+            background-color: var(--dark-bg);
+            color: var(--white);
+        }
+
+        /* --- 2. BANNER (HERO SECTION) --- */
+        .hero-banner {
+            background: linear-gradient(rgba(27, 38, 49, 0.7), rgba(27, 38, 49, 0.6)), 
+                        url('https://images.unsplash.com/photo-1527866959252-deab85ef7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh; /* Tăng chiều cao xíu để bù cho menu */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            position: relative;
+            margin-top: 60px; /* Tránh bị menu che nội dung */
+        }
+
+        .hero-content { max-width: 800px; animation: fadeInUp 1s ease; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero-content p { font-size: 1.25rem; margin-bottom: 30px; font-weight: 300; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 3. FEATURES --- */
+        .features { padding: 60px 20px; background-color: var(--white); text-align: center; }
+        .features-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .feature-item { padding: 30px; border-radius: 15px; background: #fff; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .feature-item:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .feature-item h3 { margin-bottom: 10px; color: var(--dark-bg); }
+
+        /* --- 4. COURSE DETAILS --- */
+        .course-details { padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
+        .details-grid { display: grid; grid-template-columns: 1fr 1.1fr 1.1fr; gap: 30px; align-items: start; }
+
+        /* Cột trái */
+        .info-col h2.main-title { font-size: 6rem; font-weight: 900; line-height: 1; color: #2c3e50; position: relative; margin-bottom: 10px; }
+        .info-col h2.main-title::after { content: ''; position: absolute; bottom: 5px; left: 5px; width: 80px; height: 6px; background-color: var(--accent-color); }
+        .tags { margin-bottom: 30px; }
+        .tag { background-color: #e0e0e0; padding: 5px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 500; margin-right: 5px; color: #555; }
+        .info-block { margin-bottom: 25px; }
+        .info-block h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; color: #333; }
+        .info-block ul li { position: relative; padding-left: 15px; margin-bottom: 6px; font-size: 0.95rem; color: #555; }
+        .info-block ul li::before { content: "•"; position: absolute; left: 0; font-weight: bold; color: var(--primary-color); }
+
+        /* Card tối màu */
+        .dark-card { background-color: var(--dark-bg); color: var(--white); padding: 35px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); height: 100%; }
+        .dark-card h3 { font-size: 2rem; margin-bottom: 20px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; display: inline-block; }
+        .sub-section { margin-bottom: 25px; }
+        .sub-section h4 { font-size: 1.8rem; margin-bottom: 15px; color: #fff; }
+        .content-list li { margin-bottom: 10px; font-size: 0.95rem; line-height: 1.4; display: flex; align-items: flex-start; }
+        .content-list li::before { content: "•"; margin-right: 10px; color: #aab7c4; }
+        .de-text { font-weight: 600; color: #fff; margin-right: 5px; }
+        .vn-text { color: #b0bec5; font-weight: 300; font-size: 0.9em; }
+
+        /* --- 5. FOOTER --- */
+        footer { background-color: #111; color: #aaa; text-align: center; padding: 30px 20px; margin-top: 50px; }
+
+        /* --- 6. FLOATING CONTACT BUTTONS --- */
+        .floating-contact { position: fixed; bottom: 30px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .contact-icon { width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.3s; position: relative; cursor: pointer; }
+        .contact-icon:hover { transform: scale(1.1); }
+        .contact-icon svg { width: 30px; height: 30px; fill: white; }
+        .btn-zalo { background-color: #0068FF; animation: pulse-blue 2s infinite; }
+        .btn-messenger { background: linear-gradient(45deg, #00B2FF, #006AFF); animation: pulse-blue 2s infinite; animation-delay: 0.5s; }
+        .btn-phone { background-color: #4CAF50; animation: shake 1.5s infinite; }
+        .tooltip-text { visibility: hidden; width: 120px; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 5px 0; position: absolute; right: 110%; z-index: 1; font-size: 12px; opacity: 0; transition: opacity 0.3s; }
+        .contact-icon:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 104, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0); }
+        }
+
+        @keyframes shake {
+            0% { transform: rotate(0deg) scale(1); }
+            10% { transform: rotate(-25deg) scale(1.1); }
+            20% { transform: rotate(25deg) scale(1.1); }
+            30% { transform: rotate(-25deg) scale(1.1); }
+            40% { transform: rotate(25deg) scale(1.1); }
+            50% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(0deg) scale(1); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .hero-banner { margin-top: 140px; } /* Đẩy banner xuống để không bị menu che trên mobile */
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .features-container, .details-grid { grid-template-columns: 1fr; }
+            .info-col { text-align: center; margin-bottom: 40px; }
+            .info-col h2.main-title::after { left: 50%; transform: translateX(-50%); }
+            .floating-contact { right: 15px; bottom: 20px; }
+            .contact-icon { width: 45px; height: 45px; }
+            .contact-icon svg { width: 24px; height: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="https://cdn.prod.website-files.com/63a8d7df60216a122a96bab0/640ac61ee7d2574587a8aa5c_NaNu%20NaNa%20Logo%20(Transparent).png" alt="NaNu NaNa Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" data-i18n="menu_course">Khoá Học</a></li>
+                <li><a href="#" data-i18n="menu_uni">Du Học Đại Học</a></li>
+                <li><a href="#" data-i18n="menu_vocational">Du Học Nghề</a></li>
+                <li><a href="#" data-i18n="menu_about">Về Chúng Tôi</a></li>
+                <li><a href="#" data-i18n="menu_recruit">Tuyển dụng</a></li>
+            </ul>
+            <select class="lang-switch" onchange="changeLanguage(this.value)">
+                <option value="vi">🇻🇳 Tiếng Việt</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="de">🇩🇪 Deutsch</option>
+            </select>
+        </div>
+    </nav>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1 data-i18n="hero_title">CHINH PHỤC TIẾNG ĐỨC A2</h1>
+            <p data-i18n="hero_desc">Khóa học nền tảng vững chắc - Tự tin sử dụng ngôn ngữ độc lập.<br>Cam kết đầu ra chuẩn viện Goethe.</p>
+            <a href="#course-content" class="btn" data-i18n="hero_btn">Đăng ký tư vấn ngay</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-container">
+            <div class="feature-item">
+                <span class="feature-icon">🎓</span>
+                <h3 data-i18n="feat_1_title">Giáo Trình Chuẩn</h3>
+                <p data-i18n="feat_1_desc">Biên soạn sát với đề thi thực tế, tập trung vào tính ứng dụng và giao tiếp đời sống.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">👩‍🏫</span>
+                <h3 data-i18n="feat_2_title">Giáo Viên Tận Tâm</h3>
+                <p data-i18n="feat_2_desc">Đội ngũ giảng viên giàu kinh nghiệm, sửa lỗi phát âm kỹ càng từng buổi học.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">⏰</span>
+                <h3 data-i18n="feat_3_title">Lịch Học Linh Hoạt</h3>
+                <p data-i18n="feat_3_desc">Đa dạng khung giờ Online Zoom và Offline tại TP.HCM & Hà Nội.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="course-details" id="course-content">
+        <div class="details-grid">
+            
+            <div class="info-col">
+                <h2 class="main-title">A2</h2>
+                <div class="tags">
+                    <span class="tag">Online - Zoom</span>
+                    <span class="tag" data-i18n="tag_loc">Offline - Sài Gòn | Hà Nội</span>
+                </div>
+
+                <div class="info-block">
+                    <h3 data-i18n="q1_title">Khóa học kéo dài bao lâu?</h3>
+                    <ul>
+                        <li data-i18n="q1_a1">2 - 3 tháng cho khoá A2 (bao gồm A2.1 và A2.2).</li>
+                        <li data-i18n="q1_a2">Tuỳ thuộc vào thời gian học viên có thể sắp xếp để học mỗi tuần sẽ quyết định thời gian hoàn thành khoá học.</li>
+                    </ul>
+                </div>
+
+                <div class="info-block">
+                    <h3 data-i18n="q2_title">Khóa học dành cho ai?</h3>
+                    <ul>
+                        <li data-i18n="q2_a1">Khóa học tiếng Đức A2 của chúng tôi dành cho những người học đã nắm vững kiến thức cơ bản và muốn nâng cao kiến thức của họ.</li>
+                        <li data-i18n="q2_a2">Khóa học tập trung vào việc thúc đẩy khả năng sử dụng ngôn ngữ một cách độc lập.</li>
+                    </ul>
+                </div>
+
+                <div class="info-block">
+                    <h3 data-i18n="q3_title">Bạn học gì trong khóa học này?</h3>
+                    <ul>
+                        <li data-i18n="q3_a1">Khóa học tiếng Đức A2 là sự phát triển từ kiến thức cơ bản và mở rộng kiến thức. Bạn sẽ làm giàu vốn từ vựng, thực hành gọi điện thoại bằng tiếng Đức và học cách diễn đạt bằng văn bản.</li>
+                        <li data-i18n="q3_a2">Bạn sẽ có khả năng hiểu cách chỉ đường, mua sắm và đặt món ăn ở các nhà hàng. Với khóa học này, bạn sẽ cải thiện khả năng sử dụng thì quá khứ và tương lai đơn giản và học cách xây dựng câu.</li>
+                    </ul>
+                </div>
+
+                <a href="#contact-form" class="btn" id="contact-form" data-i18n="contact_btn">Liên hệ</a>
+            </div>
+
+            <div class="dark-card">
+                <div class="sub-section">
+                    <h4>A2.1</h4>
+                    <ul class="content-list">
+                        <li><span><span class="de-text">Ankommen</span> - <span class="vn-text" data-i18n="voc_1">(Đến nơi)</span></span></li>
+                        <li><span><span class="de-text">Zu Hause</span> - <span class="vn-text" data-i18n="voc_2">(Ở nhà)</span></span></li>
+                        <li><span><span class="de-text">Essen</span> - <span class="vn-text" data-i18n="voc_3">(Ăn uống)</span></span></li>
+                        <li><span><span class="de-text">Arbeitswelt</span> - <span class="vn-text" data-i18n="voc_4">(Môi trường làm việc - Tìm việc, phỏng vấn...)</span></span></li>
+                        <li><span><span class="de-text">Sport und Fitness</span> - <span class="vn-text" data-i18n="voc_5">(Thể thao và sức khỏe...)</span></span></li>
+                        <li><span><span class="de-text">Schule und Ausbildung</span> - <span class="vn-text" data-i18n="voc_6">(Trường học và học nghề)</span></span></li>
+                        <li><span><span class="de-text">Feste und Geschenke</span> - <span class="vn-text" data-i18n="voc_7">(Lễ hội và quà tặng)</span></span></li>
+                    </ul>
+                </div>
+                <div class="sub-section">
+                    <h4>A2.2</h4>
+                    <ul class="content-list">
+                        <li><span><span class="de-text">Am Wochenende</span> - <span class="vn-text" data-i18n="voc_8">(Cuối tuần - sở thích, thói quen...)</span></span></li>
+                        <li><span><span class="de-text">Meine Sachen</span> - <span class="vn-text" data-i18n="voc_9">(Đồ của tôi)</span></span></li>
+                        <li><span><span class="de-text">Kommunikation</span> - <span class="vn-text" data-i18n="voc_10">(Giao tiếp)</span></span></li>
+                        <li><span><span class="de-text">Unterwegs</span> - <span class="vn-text" data-i18n="voc_11">(Trên đường - chỉ đường, tình trạng giao thông...)</span></span></li>
+                        <li><span><span class="de-text">Reisen</span> - <span class="vn-text" data-i18n="voc_12">(Du lịch)</span></span></li>
+                        <li><span><span class="de-text">Auf der Bank</span> - <span class="vn-text" data-i18n="voc_13">(Tại ngân hàng)</span></span></li>
+                        <li><span><span class="de-text">Lebensstation</span> - <span class="vn-text" data-i18n="voc_14">(Cột mốc quan trọng trong cuộc đời)</span></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dark-card">
+                <h3 data-i18n="grammar_title">NGỮ PHÁP</h3>
+                <ul class="content-list">
+                    <li><span><span class="de-text">Konjunktionen (für Nebensätze)</span> → <span class="vn-text" data-i18n="gram_1">Liên từ (dùng cho mệnh đề phụ)</span></span></li>
+                    <li><span><span class="de-text">Wechselpräpositionen</span> → <span class="vn-text" data-i18n="gram_2">Giới từ hai cách (Akkusativ/Dativ)</span></span></li>
+                    <li><span><span class="de-text">Reflexivpronomen</span> → <span class="vn-text" data-i18n="gram_3">Đại từ phản thân</span></span></li>
+                    <li><span><span class="de-text">Indefinitpronomen</span> → <span class="vn-text" data-i18n="gram_4">Đại từ bất định</span></span></li>
+                    <li><span><span class="de-text">Verben mit Präpositionen (Dativ)</span> → <span class="vn-text" data-i18n="gram_5">Động từ đi kèm giới từ với Dativ</span></span></li>
+                    <li><span><span class="de-text">Präpositionaladverbien</span> → <span class="vn-text" data-i18n="gram_6">Trạng từ giới từ</span></span></li>
+                    <li><span><span class="de-text">Modalverben in Präteritum</span> → <span class="vn-text" data-i18n="gram_7">Động từ khuyết thiếu ở thì Präteritum</span></span></li>
+                    <li><span><span class="de-text">Dativ als Objekt</span> → <span class="vn-text" data-i18n="gram_8">Dativ đóng vai trò tân ngữ</span></span></li>
+                    <li><span><span class="de-text">Konjunktiv II wiederholen</span> → <span class="vn-text" data-i18n="gram_9">Ôn lại Konjunktiv II</span></span></li>
+                    <li><span><span class="de-text">Adjektivdeklination</span> → <span class="vn-text" data-i18n="gram_10">Chia đuôi tính từ</span></span></li>
+                    <li><span><span class="de-text">Passiv</span> → <span class="vn-text" data-i18n="gram_11">Câu bị động</span></span></li>
+                    <li><span><span class="de-text">Nebensätze</span> → <span class="vn-text" data-i18n="gram_12">Mệnh đề phụ</span></span></li>
+                    <li><span><span class="de-text">Lassen</span> → <span class="vn-text" data-i18n="gram_13">Động từ "Lassen" (sai khiến/cho phép)</span></span></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 NaNu NaNa. <span data-i18n="footer_rights">All rights reserved.</span></p>
+        <p>Hotline: 0909 123 456 | Email: contact@tiengduc.vn</p>
+    </footer>
+
+    <div class="floating-contact">
+        <a href="https://zalo.me/0909123456" target="_blank" class="contact-icon btn-zalo">
+            <span class="tooltip-text">Chat Zalo</span>
+            <svg viewBox="0 0 512 512">
+                <path d="M432,103.7c-26-25-63-39-106-39H153.9c-85,0-154,64-154,143c0,37,16,70,43,96c4,3,6,9,5,14c-4,24-15,58-38,81c-2,3-3,6-1,9c2,3,5,4,9,3 c47-9,85-30,108-48c5-4,12-4,18-2c10,4,21,6,32,6h151c85,0,154-64,154-143C480.9,173.7,464,133.7,432,103.7z"/>
+                <path d="M129.5,231.8l10.9-34.1c1.1-3.3-1.4-6.8-4.9-6.8H113c-2.1,0-4,1.3-4.7,3.3l-12.8,37.3c-1.3,3.9,1.6,7.9,5.7,7.9h12.5 C126.9,239.4,129.2,236,129.5,231.8z"/>
+            </svg>
+        </a>
+        <a href="https://m.me/your-page-id" target="_blank" class="contact-icon btn-messenger">
+            <span class="tooltip-text">Chat Facebook</span>
+            <svg viewBox="0 0 512 512">
+                <path d="M256.55,8C119.5,8,4.5,108.47,4.5,232.55c0,71.59,33.56,135.53,88.45,178.22,4.6,3.61,7.5,9.26,7.5,15.24v61.73a16.89,16.89,0,0,0,24.77,14.88l62.27-29.35a18.3,18.3,0,0,1,13.68-.53c17.22,4.8,35.74,7.4,55,7.4,137,0,252-100.47,252-224.55S393.5,8,256.55,8Z"/>
+            </svg>
+        </a>
+        <a href="tel:0909123456" class="contact-icon btn-phone">
+            <span class="tooltip-text">Gọi ngay</span>
+            <svg viewBox="0 0 512 512">
+                <path d="M391,330.4c-28.9-10.6-59.5-16.7-90.8-17.7c-5.9-0.2-11.6,2.1-15.6,6.3l-36.5,36.5c-60.6-26.6-103.8-69.8-130.4-130.4 l36.5-36.5c4.2-4,6.5-9.7,6.3-15.6c-1-31.3-7.1-61.9-17.7-90.8c-2.7-7.3-9.5-12.4-17.3-12.4H74.3c-10.7,0-19.6,8.4-20,19.1 C51.4,286,197.8,443.9,390.6,448c10.7,0.4,19.1-8.5,19.1-20V347.7C409.7,339.9,404.7,333.1,391,330.4z"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        const translations = {
+            vi: {
+                menu_course: "Khoá Học",
+                menu_uni: "Du Học Đại Học",
+                menu_vocational: "Du Học Nghề",
+                menu_about: "Về Chúng Tôi",
+                menu_recruit: "Tuyển dụng",
+                hero_title: "CHINH PHỤC TIẾNG ĐỨC A2",
+                hero_desc: "Khóa học nền tảng vững chắc - Tự tin sử dụng ngôn ngữ độc lập.<br>Cam kết đầu ra chuẩn viện Goethe.",
+                hero_btn: "Đăng ký tư vấn ngay",
+                feat_1_title: "Giáo Trình Chuẩn",
+                feat_1_desc: "Biên soạn sát với đề thi thực tế, tập trung vào tính ứng dụng và giao tiếp đời sống.",
+                feat_2_title: "Giáo Viên Tận Tâm",
+                feat_2_desc: "Đội ngũ giảng viên giàu kinh nghiệm, sửa lỗi phát âm kỹ càng từng buổi học.",
+                feat_3_title: "Lịch Học Linh Hoạt",
+                feat_3_desc: "Đa dạng khung giờ Online Zoom và Offline tại TP.HCM & Hà Nội.",
+                tag_loc: "Offline - Sài Gòn | Hà Nội",
+                q1_title: "Khóa học kéo dài bao lâu?",
+                q1_a1: "2 - 3 tháng cho khoá A2 (bao gồm A2.1 và A2.2).",
+                q1_a2: "Tuỳ thuộc vào thời gian học viên có thể sắp xếp để học mỗi tuần sẽ quyết định thời gian hoàn thành khoá học.",
+                q2_title: "Khóa học dành cho ai?",
+                q2_a1: "Khóa học tiếng Đức A2 của chúng tôi dành cho những người học đã nắm vững kiến thức cơ bản và muốn nâng cao kiến thức của họ.",
+                q2_a2: "Khóa học tập trung vào việc thúc đẩy khả năng sử dụng ngôn ngữ một cách độc lập.",
+                q3_title: "Bạn học gì trong khóa học này?",
+                q3_a1: "Khóa học tiếng Đức A2 là sự phát triển từ kiến thức cơ bản và mở rộng kiến thức. Bạn sẽ làm giàu vốn từ vựng, thực hành gọi điện thoại bằng tiếng Đức và học cách diễn đạt bằng văn bản.",
+                q3_a2: "Bạn sẽ có khả năng hiểu cách chỉ đường, mua sắm và đặt món ăn ở các nhà hàng. Với khóa học này, bạn sẽ cải thiện khả năng sử dụng thì quá khứ và tương lai đơn giản và học cách xây dựng câu.",
+                contact_btn: "Liên hệ",
+                voc_1: "(Đến nơi)", voc_2: "(Ở nhà)", voc_3: "(Ăn uống)", voc_4: "(Môi trường làm việc - Tìm việc, phỏng vấn...)", voc_5: "(Thể thao và sức khỏe...)", voc_6: "(Trường học và học nghề)", voc_7: "(Lễ hội và quà tặng)",
+                voc_8: "(Cuối tuần - sở thích, thói quen...)", voc_9: "(Đồ của tôi)", voc_10: "(Giao tiếp)", voc_11: "(Trên đường - chỉ đường, tình trạng giao thông...)", voc_12: "(Du lịch)", voc_13: "(Tại ngân hàng)", voc_14: "(Cột mốc quan trọng trong cuộc đời)",
+                grammar_title: "NGỮ PHÁP",
+                gram_1: "Liên từ (dùng cho mệnh đề phụ)", gram_2: "Giới từ hai cách (Akkusativ/Dativ)", gram_3: "Đại từ phản thân", gram_4: "Đại từ bất định", gram_5: "Động từ đi kèm giới từ với Dativ", gram_6: "Trạng từ giới từ", gram_7: "Động từ khuyết thiếu ở thì Präteritum", gram_8: "Dativ đóng vai trò tân ngữ", gram_9: "Ôn lại Konjunktiv II", gram_10: "Chia đuôi tính từ", gram_11: "Câu bị động", gram_12: "Mệnh đề phụ", gram_13: "Động từ 'Lassen' (sai khiến/cho phép)",
+                footer_rights: "Đã đăng ký bản quyền."
+            },
+            en: {
+                menu_course: "Courses",
+                menu_uni: "University Study",
+                menu_vocational: "Vocational Training",
+                menu_about: "About Us",
+                menu_recruit: "Recruitment",
+                hero_title: "MASTER GERMAN A2",
+                hero_desc: "Solid foundation course - Confident independent language use.<br>Goethe standard output commitment.",
+                hero_btn: "Register for consultation",
+                feat_1_title: "Standard Curriculum",
+                feat_1_desc: "Compiled close to actual exams, focusing on application and daily communication.",
+                feat_2_title: "Dedicated Teachers",
+                feat_2_desc: "Experienced faculty, correcting pronunciation errors carefully every lesson.",
+                feat_3_title: "Flexible Schedule",
+                feat_3_desc: "Various Online Zoom and Offline slots in HCMC & Hanoi.",
+                tag_loc: "Offline - Saigon | Hanoi",
+                q1_title: "How long is the course?",
+                q1_a1: "2 - 3 months for A2 (includes A2.1 and A2.2).",
+                q1_a2: "The completion time depends on the weekly schedule the student can arrange.",
+                q2_title: "Who is this course for?",
+                q2_a1: "Our German A2 course is for learners who have mastered the basics and want to advance their knowledge.",
+                q2_a2: "The course focuses on promoting independent language use.",
+                q3_title: "What do you learn?",
+                q3_a1: "The A2 course develops from basic knowledge. You will enrich vocabulary, practice phone calls in German, and learn written expression.",
+                q3_a2: "You will understand directions, shopping, and ordering in restaurants. You will improve simple past/future tense usage and sentence building.",
+                contact_btn: "Contact",
+                voc_1: "(Arrive)", voc_2: "(At home)", voc_3: "(Eating)", voc_4: "(Work environment - Job hunting...)", voc_5: "(Sport and fitness...)", voc_6: "(School and training)", voc_7: "(Festivals and gifts)",
+                voc_8: "(Weekend - hobbies...)", voc_9: "(My things)", voc_10: "(Communication)", voc_11: "(On the road - directions...)", voc_12: "(Travel)", voc_13: "(At the bank)", voc_14: "(Life milestones)",
+                grammar_title: "GRAMMAR",
+                gram_1: "Conjunctions (for subordinate clauses)", gram_2: "Two-way prepositions", gram_3: "Reflexive pronouns", gram_4: "Indefinite pronouns", gram_5: "Verbs with prepositions (Dative)", gram_6: "Prepositional adverbs", gram_7: "Modal verbs in Präteritum", gram_8: "Dative as object", gram_9: "Review Konjunktiv II", gram_10: "Adjective declension", gram_11: "Passive voice", gram_12: "Subordinate clauses", gram_13: "Verb 'Lassen' (let/allow)",
+                footer_rights: "All rights reserved."
+            },
+            de: {
+                menu_course: "Kurse",
+                menu_uni: "Studium",
+                menu_vocational: "Ausbildung",
+                menu_about: "Über Uns",
+                menu_recruit: "Karriere",
+                hero_title: "DEUTSCH A2 MEISTERN",
+                hero_desc: "Solider Grundkurs - Selbstbewusste unabhängige Sprachverwendung.<br>Verpflichtung zum Goethe-Standard.",
+                hero_btn: "Beratung anfordern",
+                feat_1_title: "Standardlehrplan",
+                feat_1_desc: "Prüfungsnah erstellt, Fokus auf Anwendung und tägliche Kommunikation.",
+                feat_2_title: "Engagierte Lehrer",
+                feat_2_desc: "Erfahrene Lehrkräfte, sorgfältige Korrektur der Aussprache in jeder Lektion.",
+                feat_3_title: "Flexibler Zeitplan",
+                feat_3_desc: "Verschiedene Online-Zoom- und Offline-Termine in HCMC & Hanoi.",
+                tag_loc: "Offline - Saigon | Hanoi",
+                q1_title: "Wie lange dauert der Kurs?",
+                q1_a1: "2 - 3 Monate für A2 (inklusive A2.1 und A2.2).",
+                q1_a2: "Die Dauer hängt von der Zeit ab, die der Schüler wöchentlich aufbringen kann.",
+                q2_title: "Für wen ist dieser Kurs?",
+                q2_a1: "Unser A2-Kurs richtet sich an Lernende, die die Grundlagen beherrschen und ihr Wissen erweitern wollen.",
+                q2_a2: "Der Kurs konzentriert sich auf die Förderung der unabhängigen Sprachverwendung.",
+                q3_title: "Was lernen Sie?",
+                q3_a1: "Der A2-Kurs baut auf Grundwissen auf. Sie erweitern den Wortschatz, üben Telefonate und schriftlichen Ausdruck.",
+                q3_a2: "Sie verstehen Wegbeschreibungen, Einkaufen und Bestellen. Sie verbessern die Nutzung von Vergangenheit/Zukunft und Satzbau.",
+                contact_btn: "Kontakt",
+                voc_1: "(Ankommen)", voc_2: "(Zu Hause)", voc_3: "(Essen)", voc_4: "(Arbeitswelt)", voc_5: "(Sport und Fitness)", voc_6: "(Schule und Ausbildung)", voc_7: "(Feste und Geschenke)",
+                voc_8: "(Wochenende)", voc_9: "(Meine Sachen)", voc_10: "(Kommunikation)", voc_11: "(Unterwegs)", voc_12: "(Reisen)", voc_13: "(Auf der Bank)", voc_14: "(Lebensstationen)",
+                grammar_title: "GRAMMATIK",
+                gram_1: "Konjunktionen (für Nebensätze)", gram_2: "Wechselpräpositionen", gram_3: "Reflexivpronomen", gram_4: "Indefinitpronomen", gram_5: "Verben mit Präpositionen (Dativ)", gram_6: "Präpositionaladverbien", gram_7: "Modalverben im Präteritum", gram_8: "Dativ als Objekt", gram_9: "Wiederholung Konjunktiv II", gram_10: "Adjektivdeklination", gram_11: "Passiv", gram_12: "Nebensätze", gram_13: "Verb 'Lassen'",
+                footer_rights: "Alle Rechte vorbehalten."
+            }
+        };
+
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+    </script>
+</body>
+</html>
